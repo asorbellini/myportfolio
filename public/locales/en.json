@@ -1,0 +1,33 @@
+{
+    "navBarSection" : {
+        "aboutSection" : "About me",
+        "skillsSection" : "Skills",
+        "projectsSection" : "Projects",
+        "contactSection" : "Contact"
+    },
+    "hiSection": {
+        "title": "Hello, I'm Ayelén.",
+        "subtitle": "Welcome to my portfolio, where each line of code represents a new learning on my path.",
+        "paragraph" : ""
+    },
+    "aboutSection": {
+        "title": "About me",
+        "subtitle":"",
+        "paragraph": "Hi again, I'm Ayelén and I'm civil engineer, but some time ago I decided to redirect my career towards web development. I've always been interested in technology and problem-solving, and I found in programming a way to combine creativity and logic to build solutions. Currently, I am developing my portfolio to showcase my skills and projects. My goals is to continue learning and growing in the world of web development, contributing analytical and problem-solving skills acquired in my training as a engineer. "
+    },
+    "skillsSection": {
+        "title":"Skills",
+        "subtitle":"",
+        "paragraph" : ""
+    },
+    "projectsSection" : {
+        "title": "Projects",
+        "subtitle": "",
+        "paragraph":""
+    },
+    "contactSection" : {
+        "title" : "Contact",
+        "subtitle": "You can find me in social media or send me an email.",
+        "paragraph" : ""
+    }
+}

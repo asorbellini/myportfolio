@@ -1,0 +1,33 @@
+{
+    "navBarSection" : {
+        "aboutSection" : "Sobre mi",
+        "skillsSection" : "Habilidades",
+        "projectsSection" : "Proyectos",
+        "contactSection" : "Contacto"
+    },
+    "hiSection": {
+        "title": "Hola, soy Ayelén.",
+        "subtitle": "Bienvenido a mi espacio digital, donde cada línea de código representa un nuevo aprendizaje en mi camino.",
+        "paragraph" : ""
+    },
+    "aboutSection": {
+        "title": "Sobre mi",
+        "subtitle":"",
+        "paragraph": "Hola de nuevo, soy Ayelén y soy ingeniera civil de formación, pero hace un tiempo decidí redirigir mi carrera hacia el desarrollo web. Siempre me ha interesado la tecnología y la resolución de problemas, y encontré en la programación una forma de combinar creatividad y lógica para construir soluciones. Actualmente, estoy desarrollando mi portafolio para mostrar mis habilidades y proyectos. Mi objetivo es seguir aprendiendo y creciendo en el mundo del desarrollo web, aportando mi capacidad analítica y resolución de problemas adquiridas en mi formación como ingeniera."
+    },
+    "skillsSection": {
+        "title":"Habilidades adquiridas",
+        "subtitle":"",
+        "paragraph" : ""
+    },
+    "projectsSection" : {
+        "title": "Proyectos",
+        "subtitle": "",
+        "paragraph":""
+    },
+    "contactSection" : {
+        "title" : "Contacto",
+        "subtitle": "Podes encontrarme en las siguientes redes o dejame un mensaje por este medio.",
+        "paragraph" : ""
+    }
+}
