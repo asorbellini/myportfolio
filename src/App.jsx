@@ -8,13 +8,15 @@ import { Contact } from './sections/Contact.jsx'
 import { ThemeSwitcher } from './components/ThemeSwitcher.jsx'
 import { Hi } from './sections/Hi.jsx'
 import ScrollToTop from './components/ScrollTop.jsx'
-import { LanguageSelect } from './components/LanguageSelect.jsx'
+import IconflakeCursor from './components/IconCursorEffect.jsx'
+/* import { LanguageSelect } from './components/LanguageSelect.jsx' */
 
 function App() {
 
   return (
     <main>
-      <LanguageSelect />
+      <IconflakeCursor />
+{/*       <LanguageSelect /> */}
       <ThemeSwitcher />
       <ScrollToTop />
       <Navbar />

@@ -1,6 +1,5 @@
 import { useContext, useState } from "react"
 import { ThemeContext} from "../context/ThemeContext.jsx"
-import { themes } from "../const/const.js"
 import Flower from "../assets/icons/Flower.svg"
 import Sun from "../assets/icons/Sun.svg"
 import Autumn from "../assets/icons/Autumn.svg"
