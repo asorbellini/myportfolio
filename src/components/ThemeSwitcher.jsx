@@ -21,7 +21,7 @@ export const ThemeSwitcher = () => {
             <button
                 onClick={() => setOpen(!open)}
                 className={clsx("relative sm:w-16 w-10 sm:h-16 h-10 rounded-full flex items-center justify-center shadow-lg transition-all z-40",
-                    darkMode ? `bg-dark${theme}-quaternary border border-white` : `bg-${theme}-quaternary border border-${theme}-secondary`
+                    darkMode ? `bg-dark${theme}-quaternary border-2 border-dark${theme}-secondary` : `bg-${theme}-quaternary border-2 border-${theme}-secondary`
                 )}
             >
                 <img src={currentTheme.icon} alt={currentTheme.name} className="sm:w-10 w-6 sm:h-10 h-6 transition-transform duration-500"/>
@@ -37,7 +37,7 @@ export const ThemeSwitcher = () => {
                         }}
                         className={clsx("absolute w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-transform duration-500", 
                             open ? "scale-100 opacity-100" : "scale-0 opacity-0", 
-                            darkMode ? `bg-dark${season.theme}-quaternary border border-white` : `bg-${season.theme}-quaternary border border-${theme}-secondary`)}
+                            darkMode ? `bg-dark${season.theme}-quaternary border-2 border-white` : `bg-${season.theme}-quaternary border-2 border-[#1c1c1c]`)}
                         style={{
                             transform: `translate(${open ? -Math.cos((Math.PI / 180) * season.angle) * 90 : 0}px, ${
                                 open ? Math.sin((Math.PI / 180) * season.angle) * 90 : 0

@@ -2,7 +2,7 @@ import clsx from "clsx"
 import { useState, useRef, useContext } from "react"
 import { ThemeContext } from "../context/ThemeContext"
 import emailjs from "@emailjs/browser"
-import { GitHubIcon, LinkedinIcon } from "../components/Icons";
+import { GitHubIcon, LinkedinIcon } from "../components/Icons.jsx";
 
 export const Contact = () => {
 
@@ -67,7 +67,7 @@ export const Contact = () => {
                         <h1 className="title-section"><strong>Contactame</strong></h1>
                         <div className="w-full flex sm:flex-row flex-col items-start mt-2 h-full">
                             <div className="w-full sm:basis-1/3">
-                                <h2>Podes encontrarme en las siguientes redes o dejame un mensaje por este medio.</h2>
+                                <h2 className="paragraph">Podes encontrarme en las siguientes redes o dejame un mensaje.</h2>
                                 <div className="grid grid-cols-2 justify-items-center my-2">
                                     <a href="https://github.com/asorbellini">
                                         <GitHubIcon />

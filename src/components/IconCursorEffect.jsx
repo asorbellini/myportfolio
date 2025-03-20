@@ -1,14 +1,19 @@
 
 import { useContext, useEffect, useRef, useState } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
+import Flower from "../assets/icons/Flower.svg"
+import Sun from "../assets/icons/Sun.svg"
+import Autumn from "../assets/icons/Autumn.svg"
+import Snow from "../assets/icons/Snow.svg"
+
 // using Cursify
 const IconflakeCursor = ({ element }) => {
     const {theme} = useContext(ThemeContext)
     const seasons = [
-        {name: "leaf", icon: "🍂", theme: "autumn"},
-        {name: "snow", icon: "❄️" , theme: "winter"},
-        {name: "flower", icon: "🌸", theme: "spring"},
-        {name: "sun", icon: "🔆", theme: "summer"}]
+        {name: "leaf", icon: Autumn, theme: "autumn"},
+        {name: "snow", icon: Snow , theme: "winter"},
+        {name: "flower", icon: Flower, theme: "spring"},
+        {name: "sun", icon: Sun, theme: "summer"}]
     const canvasRef = useRef(null);
     const particles = useRef([]);
     const canvImages = useRef([]);
@@ -18,7 +23,9 @@ const IconflakeCursor = ({ element }) => {
 
     useEffect(()=>{
         const selectedThemeIcon = seasons.find((season)=> season.theme === theme)
-        setPossibleEmoji([selectedThemeIcon.icon])
+        if (selectedThemeIcon) {
+            setPossibleEmoji([selectedThemeIcon.icon])
+        }
     }, [theme])
 
     useEffect(() => {
@@ -28,45 +35,37 @@ const IconflakeCursor = ({ element }) => {
         );
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');
+
         if (!context) return;
+
         const targetElement = element || document.body;
         canvas.style.position = element ? 'absolute' : 'fixed';
         canvas.style.top = '0';
         canvas.style.left = '0';
         canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = "80"
         targetElement.appendChild(canvas);
         canvasRef.current = canvas;
+
         const setCanvasSize = () => {
             canvas.width = element ? targetElement.clientWidth : window.innerWidth;
             canvas.height = element ? targetElement.clientHeight : window.innerHeight;
         };
         const createEmojiImages = () => {
             canvImages.current = []
-            context.font = '24px serif';
-            context.textBaseline = 'middle';
-            context.textAlign = 'center';
-            possibleEmoji.forEach((emoji) => {
-                const measurements = context.measureText(emoji);
-                const bgCanvas = document.createElement('canvas');
-                const bgContext = bgCanvas.getContext('2d');
-                if (!bgContext) return;
-                bgCanvas.width = measurements.width;
-                bgCanvas.height = measurements.actualBoundingBoxAscent * 2;
-                bgContext.textAlign = 'center';
-                bgContext.font = '16px serif';
-                bgContext.textBaseline = 'middle';
-                bgContext.fillText(
-                emoji,
-                bgCanvas.width/2,
-                measurements.actualBoundingBoxAscent
-                );
-                canvImages.current.push(bgCanvas);
+            possibleEmoji.forEach((emojiPath) => {
+                const img = new Image();
+                img.src = emojiPath;
+                img.onload = () => {
+                    canvImages.current.push(img);
+                };
             });
             };
             const addParticle = (x, y) => {
+                if (canvImages.current.length === 0) return;
                 const randomImage =
                     canvImages.current[
-                    Math.floor(Math.random() * canvImages.current.length)
+                        Math.floor(Math.random() * canvImages.current.length)
                     ];
                 particles.current.push(new Particle(x, y, randomImage));
             };
@@ -93,8 +92,8 @@ const IconflakeCursor = ({ element }) => {
                 updateParticles();
                 animationFrame.current = requestAnimationFrame(animationLoop);
             };
+
             const init = () => {
-                if (prefersReducedMotion.current?.matches) return;
                 setCanvasSize();
                 createEmojiImages();
                 targetElement.addEventListener('mousemove', onMouseMove);
@@ -150,7 +149,7 @@ class Particle {
     context.save();
     context.translate(this.position.x, this.position.y);
     context.scale(scale, scale);
-    context.drawImage(this.canv, -this.canv.width / 2, -this.canv.height / 2);
+    context.drawImage(this.canv, -10, -10, 20, 20);
     context.restore();
   }
 }

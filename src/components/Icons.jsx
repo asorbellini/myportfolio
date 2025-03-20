@@ -23,7 +23,7 @@ export const ArrowUp = () => {
 
 export const CloseIcon = () => {
     return (
-        <svg width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" className="stroke-white">
+        <svg width="30px" height="30px" viewBox="0 0 24 24" strokeWidth="1.5" className="stroke-white">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
         </svg>
     )
@@ -33,7 +33,7 @@ export const CloseIcon = () => {
 
 export const MenuIcon = () => {
     return (
-        <svg width="24" height="24" viewBox="0 0 24 24">
+        <svg width="30px" height="30px" viewBox="0 0 24 24">
             <g id="Page-1" stroke="none">
                 <g id="Menu" >
                     <line x1="5" y1="7" x2="19" y2="7" id="Path" strokeWidth="2" strokeLinecap="round" className="stroke-white"> </line>

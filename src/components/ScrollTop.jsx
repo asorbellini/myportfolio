@@ -30,7 +30,7 @@ const ScrollToTop = () => {
         <button
             onClick={scrollToTop}
             className={clsx("fixed bottom-2 left-2 z-50 sm:w-16 w-10 sm:h-16 h-10 rounded-xl flex items-center justify-center shadow-lg hover:animate-bounce transition-all duration-300", isVisible ? "translate-x-0 opacity-100" : "translate-y-20 opacity-0", 
-            darkMode ? `bg-dark${theme}-secondary` : `bg-${theme}-secondary`)}
+            darkMode ? `bg-dark${theme}-secondary border-2 border-dark${theme}-quaternary` : `bg-${theme}-secondary border-2 border-${theme}-quaternary`)}
             aria-label="Volver arriba"
         ><ArrowUp />
         </button>
