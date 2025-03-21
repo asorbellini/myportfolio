@@ -62,12 +62,12 @@ const IconflakeCursor = ({ element }) => {
             });
             };
             const addParticle = (x, y) => {
-                if (canvImages.current.length === 0) return;
-                const randomImage =
-                    canvImages.current[
-                        Math.floor(Math.random() * canvImages.current.length)
-                    ];
-                particles.current.push(new Particle(x, y, randomImage));
+            if (canvImages.current.length === 0) return;
+            const randomImage =
+                canvImages.current[
+                    Math.floor(Math.random() * canvImages.current.length)
+                ];
+            particles.current.push(new Particle(x, y, randomImage));
             };
             const onMouseMove = (e) => {
                 const x = element
