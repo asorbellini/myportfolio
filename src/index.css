@@ -1,4 +1,4 @@
-@import url('https://fonts.cdnfonts.com/css/general-sans');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,26 +6,28 @@
 
 * {
   scroll-behavior: smooth;
+  transition: background-color 1s ease-in ;
+  font-family: font-generalsans;
 }
 /*LIGHTMODE*/
 .autumn {
   background-color: theme('colors.autumn.primary');
-  color: '#4D4D4D';
+  color: '#000000';
 }
 
 .winter {
   background-color: theme('colors.winter.primary');
-  color: '#4D4D4D';
+  color: '#000000';
 }
 
 .spring {
   background-color: theme('colors.spring.primary');
-  color: '#4D4D4D';
+  color: '#000000';
 }
 
 .summer {
   background-color: theme('colors.summer.primary');
-  color: '#4D4D4D';
+  color: '#000000';
 }
 
 
@@ -57,7 +59,7 @@
   }
 
   .home-section {
-    @apply text-start xl:text-6xl md:text-5xl sm:text-4xl text-3xl font-generalsans
+    @apply text-start xl:text-6xl md:text-5xl sm:text-4xl text-3xl
   }
 
   .title-section {

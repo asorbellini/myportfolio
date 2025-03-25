@@ -1,12 +1,15 @@
-
+import { useContext } from "react"
+import { ThemeContext } from "../context/ThemeContext.jsx"
 import {ArrowDown} from "../components/Icons.jsx"
+import clsx from "clsx"
 
 export const About = () => {
+    const { theme, darkMode } = useContext(ThemeContext)
     return (
         <section className="h-screen w-full relative flex flex-col justify-between" id="about">
             <div className="flex sm:flex-row flex-col items-center sm:mt-40 mt-20 sm:mx-10 mx-5">
                 <div className="w-full">
-                    <p className="title-section"><strong>Un poco acerca de mi</strong></p>
+                    <p className={clsx("title-section", darkMode ? `text-dark${theme}-terciary` : `text-${theme}-quaternary`)}><strong>Un poco acerca de mi</strong></p>
                     <p className="paragraph">Hola de nuevo, soy Ayelén y soy ingeniera civil de formación, pero hace un tiempo decidí redirigir mi carrera hacia el desarrollo web. Siempre me ha interesado la tecnología y la resolución de problemas, y encontré en la programación una forma de combinar creatividad y lógica para construir soluciones.</p>
                     <p className="paragraph">Actualmente, estoy desarrollando mi portafolio para mostrar mis habilidades y proyectos. Mi objetivo es seguir aprendiendo y creciendo en el mundo del desarrollo web, aportando mi capacidad analítica y resolución de problemas adquiridas en mi formación como ingeniera.</p>
                 </div>

@@ -1,4 +1,4 @@
-const flowbite = require("flowbite-react/tailwind");
+
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        generalsans: ['General Sans', 'sans-serif'],
+        generalsans: ['Merriweather Sans', 'sans-serif'],
       },
       colors:{
         //LIGHT THEME
@@ -84,9 +84,6 @@ export default {
       pattern: /shadow-(autumn|darkautumn|winter|darkwinter|spring|darkspring|summer|darksummer)-(terciary|quaternary)/,
       variants: ["dark"],
     },
-  ],
-  plugins: [
-    flowbite.plugin()
   ],
 }
 

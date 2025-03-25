@@ -41,16 +41,23 @@ const useActiveSection = () => {
     return activeSecction
 }
 
-const NavbarItems = ({toggleMenu}) => {
+const NavbarItems = ({toggleMenu, darkMode}) => {
     const activeSecction = useActiveSection()
     return(
         <ul className="flex flex-col items-center gap-4 sm:flex-row md:gap-6 relative menu">
             {
             NavItems.map(({id ,title, href})=>(
-                <li key={id} className="font-generalsans max-sm:w-full max-sm:rounded-md py-2 max-sm:px-5">
+                <li key={id} className="max-sm:w-full max-sm:rounded-md py-2 max-sm:px-5">
                     <a href={href} 
-                    className={clsx("xl:text-xl md:text-lg sm:text-base text-lg transition-colors text-white", activeSecction === id ? "underline underline-offset-4" : "" )}
-                    onClick={toggleMenu}>
+                    className={clsx("xl:text-xl md:text-lg sm:text-base text-lg transition-colors duration-500", 
+                        activeSecction === id 
+                        ? darkMode 
+                            ? "text-black underline underline-offset-4" 
+                            : "text-white underline underline-offset-4" 
+                        : darkMode 
+                            ? `text-white hover:text-gray-800` 
+                            : `text-black hover:text-gray-300`)}
+                    onClick={toggleMenu} >
                         {title.charAt(0).toUpperCase()+title.slice(1)}
                     </a>
                 </li>
@@ -62,7 +69,7 @@ const NavbarItems = ({toggleMenu}) => {
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
     const toggleMenu = () => setIsOpen((prevIsOpen) => !prevIsOpen)
-    const { theme, darkMode } = useContext(ThemeContext);
+    const { theme, darkMode, toggleDarkMode } = useContext(ThemeContext);
     return (
         <header className="fixed top-0 right-0 left-0 z-50">
             <div className="mx-auto">
@@ -77,7 +84,7 @@ export const Navbar = () => {
                     </a>
                     <div className="relative flex items-center justify-between gap-6">
                         <nav className="sm:flex relative hidden">
-                            <NavbarItems toggleMenu={toggleMenu}/>
+                            <NavbarItems toggleMenu={toggleMenu}  darkMode={darkMode}/>
                         </nav>
                         <button onClick={toggleMenu} className="focus:outline-none sm:hidden flex" aria-label="Toggle menu">
                             { isOpen ? <CloseIcon /> : <MenuIcon/>}
@@ -87,7 +94,7 @@ export const Navbar = () => {
                 </div>
                 <div className={clsx("absolute left-0 backdrop-blur-sm w-full transition-all duration-300 ease-in-out overflow-hidden z-20 mx-auto sm:hidden block", isOpen ? 'max-h-screen' : 'max-h-0', darkMode ? `bg-dark${theme}-secondary` : `bg-${theme}-secondary`)}>
                     <nav className="p-3">
-                        <NavbarItems toggleMenu={toggleMenu}/>
+                        <NavbarItems toggleMenu={toggleMenu} darkMode={darkMode} />
                     </nav>
                 </div>
             </div>
