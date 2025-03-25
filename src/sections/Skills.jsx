@@ -21,7 +21,7 @@ export const Skills = () => {
                             {icon: <REACT />, name: "React"},
                             {icon: <SQLite3 />, name: "SQLite3"},
                         ].map((tech, index) => (
-                            <div key={index} className={clsx("w-full aspect-square flex flex-col items-center justify-center p-4 rounded-xl shadow-md", darkMode ? `shadow-dark${theme}-terciary` : `shadow-${theme}-quaternary` )}>
+                            <div key={index} className={clsx("w-full aspect-square flex flex-col items-center justify-center p-4 rounded-xl", darkMode ? `border-2 border-dark${theme}-terciary shadow-md shadow-dark${theme}-terciary` : `border-2 border-${theme}-quaternary shadow-md shadow-${theme}-quaternary` )}>
                                 <div className="w-12 h-12">{tech.icon}</div>
                                 <p className="mt-2 text-sm sm:text-base"><strong>{tech.name}</strong></p>
                             </div>

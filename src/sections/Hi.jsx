@@ -7,7 +7,7 @@ import {ArrowDown} from "../components/Icons.jsx"
 export const Hi = () => {
     const {theme, darkMode} = useContext(ThemeContext)
     return (
-        <section className="h-screen w-full relative flex flex-col justify-between">
+        <section className="h-screen w-full relative flex flex-col justify-between" id="home">
             <div className="flex sm:flex-row flex-col items-center sm:mt-52 mt-28 sm:mx-10 mx-5">
                 <div className="w-full sm:basis-2/3">
                     <h1 className={clsx("home-section", darkMode ? `text-dark${theme}-secondary` : `text-${theme}-secondary`)}><strong>Hola! Soy Ayelén.</strong></h1>

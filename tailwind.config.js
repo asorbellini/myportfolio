@@ -13,19 +13,19 @@ export default {
         //LIGHT THEME
         autumn:{
           'primary': 'rgb(243, 225, 187)', //BACKGROUND 
-          'secondary': 'rgb(150, 120, 50)',//TEXT / BACKGROUND-NAVBAR 
+          'secondary': 'rgb(145, 114, 55)',//TEXT / BACKGROUND-NAVBAR 
           'terciary': 'rgb(255, 254, 138)', //LOGO
-          'quaternary': 'rgb(97, 24, 0)', //BORDER
+          'quaternary': 'rgb(170, 97, 67)', //BORDER
         },
         winter:{
           'primary': 'rgb(225, 235, 240)',
-          'secondary': 'rgb(43, 110, 181)', 
+          'secondary': 'rgb(26, 120, 193)', 
           'terciary':'rgb(240, 190, 250)', //##CAMBIAR
           'quaternary':'rgb(69, 98, 104)',
         },
         spring:{
           'primary': 'rgb(190, 174, 226)',
-          'secondary': 'rgb(150, 75, 200)',
+          'secondary': 'rgb(179, 35, 247)',
           'terciary':'rgb(255, 255, 255)',
           'quaternary':'rgb(123, 86, 240)',
         },

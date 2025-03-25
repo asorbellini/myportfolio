@@ -3,6 +3,11 @@ export const themes = ['autumn','winter', 'spring', 'summer']
 
 export const NavItems = [
     {
+        id:'home',
+        title: 'Inicio',
+        href:'#home'
+    },
+    {
         id:'about',
         title: 'Sobre mi',
         href:'#about'
