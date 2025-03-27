@@ -9,6 +9,7 @@ import { ThemeSwitcher } from './components/ThemeSwitcher.jsx'
 import { Hi } from './sections/Hi.jsx'
 import ScrollToTop from './components/ScrollTop.jsx'
 import IconflakeCursor from './components/IconCursorEffect.jsx'
+
 /* import { LanguageSelect } from './components/LanguageSelect.jsx' */
 
 function App() {

@@ -13,7 +13,7 @@ const useActiveSection = () => {
         const observerOptions = {
             root: null,
             rootMargin: "0px",
-            threshold: 0.3,
+            threshold: 0.5,
         }
         const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry)=>{
@@ -58,7 +58,7 @@ const NavbarItems = ({toggleMenu, darkMode}) => {
                             ? `text-white hover:text-gray-800` 
                             : `text-black hover:text-gray-300`)}
                     onClick={toggleMenu} >
-                        {title.charAt(0).toUpperCase()+title.slice(1)}
+                        {title}
                     </a>
                 </li>
             ))}
@@ -69,7 +69,7 @@ const NavbarItems = ({toggleMenu, darkMode}) => {
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
     const toggleMenu = () => setIsOpen((prevIsOpen) => !prevIsOpen)
-    const { theme, darkMode, toggleDarkMode } = useContext(ThemeContext);
+    const { theme, darkMode } = useContext(ThemeContext);
     return (
         <header className="fixed top-0 right-0 left-0 z-50">
             <div className="mx-auto">
