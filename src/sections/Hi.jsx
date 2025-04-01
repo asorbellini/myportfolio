@@ -15,7 +15,7 @@ export const Hi = () => {
                     <h3 className="my-4 text-start xl:text-2xl md:text-xl sm:text-lg text-base/6">Bienvenido a mi espacio digital, donde cada línea de código representa un nuevo aprendizaje en mi camino.</h3>
                 </div>
                 <div className="w-full sm:basis-1/3 flex justify-center">
-                        <AvatarViewer />
+                        <AvatarViewer/>
                     {/*<img src={imagenPrevia} className="w-64"/> */}
                 </div>
             </div>

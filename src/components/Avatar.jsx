@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useRef} from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { Suspense } from "react";
 import { Html, useProgress } from "@react-three/drei"
+
 
 const CanvasLoader = () => {
     const {progress} = useProgress()
@@ -34,15 +35,6 @@ const AvatarModel = () => {
     const { scene } = useGLTF("https://models.readyplayer.me/67ced1861c9aaeb7e6896a8e.glb?textureQuality=medium?emotion=smile", true, 
         (loader) => {loader.manager.onLoad = () => console.log("Modelo cargado con éxito")});
     const avatarRef = useRef();
-
-    useEffect(() => {
-        if (avatarRef.current) {
-            console.log("RightArm:", avatarRef.current.getObjectByName("RightArm"));
-            console.log("RightForeArm:", avatarRef.current.getObjectByName("RightForeArm"));
-            console.log("RightHand:", avatarRef.current.getObjectByName("RightHand"));
-            console.log(avatarRef.current)
-        }
-    }, []);
 
     useFrame(({ clock }) => {
         if (avatarRef.current) {
@@ -103,8 +95,8 @@ const AvatarModel = () => {
             rotation={[0, 0, 0]} />
     );
 };
-    
-useGLTF.preload("https://models.readyplayer.me/67ced1861c9aaeb7e6896a8e.glb?quality=medium")
+
+useGLTF.preload("https://models.readyplayer.me/67ced1861c9aaeb7e6896a8e.glb?textureQuality=medium?emotion=smile")
 
 const AvatarViewer = () => {
     return (

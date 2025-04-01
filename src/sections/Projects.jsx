@@ -10,7 +10,24 @@ export const Projects = () => {
             <div className="flex sm:flex-row flex-col items-center sm:mt-40 mt-20 sm:mx-10 mx-5">
                 <div className="w-full align-middle items-center">
                     <h1 className={clsx("title-section", darkMode ? `text-dark${theme}-terciary` : `text-${theme}-quaternary`)}><strong>Proyectos</strong></h1>
-                    <p className="paragraph">Proximamente...</p>
+                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 mt-3 sm:mt-5 h-fit justify-items-center">
+                            <div className={clsx("w-full aspect-square flex flex-col items-center justify-center p-4 rounded-xl", darkMode ? `border-2 border-dark${theme}-terciary shadow-md shadow-dark${theme}-terciary` : `border-2 border-${theme}-quaternary shadow-md shadow-${theme}-quaternary` )}>
+                                <div className="w-12 h-12"></div>
+                                <p className="mt-2 text-xs sm:text-base text-wrap">Proximamente...</p>
+                            </div>
+                            <div className={clsx("w-full aspect-square flex flex-col items-center justify-center p-4 rounded-xl", darkMode ? `border-2 border-dark${theme}-terciary shadow-md shadow-dark${theme}-terciary` : `border-2 border-${theme}-quaternary shadow-md shadow-${theme}-quaternary` )}>
+                                <div className="w-12 h-12"></div>
+                                <p className="mt-2 text-xs sm:text-base text-wrap">Proximamente...</p>
+                            </div>
+                            <div className={clsx("w-full aspect-square flex flex-col items-center justify-center p-4 rounded-xl", darkMode ? `border-2 border-dark${theme}-terciary shadow-md shadow-dark${theme}-terciary` : `border-2 border-${theme}-quaternary shadow-md shadow-${theme}-quaternary` )}>
+                                <div className="w-12 h-12"></div>
+                                <p className="mt-2 text-xs sm:text-base text-wrap">Proximamente...</p>
+                            </div>
+                            <div className={clsx("w-full aspect-square flex flex-col items-center justify-center p-4 rounded-xl", darkMode ? `border-2 border-dark${theme}-terciary shadow-md shadow-dark${theme}-terciary` : `border-2 border-${theme}-quaternary shadow-md shadow-${theme}-quaternary` )}>
+                                <div className="w-12 h-12"></div>
+                                <p className="mt-2 text-xs sm:text-base text-wrap">Proximamente...</p>
+                            </div>
+                    </div>
                 </div>
             </div>
             <div className="relative w-full">

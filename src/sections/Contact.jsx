@@ -8,6 +8,14 @@ import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 export const Contact = () => {
     const {theme, darkMode} = useContext(ThemeContext)
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     const [loading, setLoading] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false);
     const [message, setMessage] = useState({status:"", message:""});
@@ -17,7 +25,6 @@ export const Contact = () => {
      } = useForm();
     const captchaRef = useRef(null)
     const [captchaToken, setCaptchaToken] = useState("")
-
     const onHCaptchaChange = (token) => {
         setCaptchaToken(token)
         setValue("h-captcha-response",token);
@@ -29,8 +36,7 @@ export const Contact = () => {
         if (!captchaToken) {
             setMessage({status:400, message:"Por favor, completa el captcha."})
         }
-            
-        console.log(data)
+
         const response = await fetch("https://api.web3forms.com/submit", {
             method: "POST",
             headers: {
@@ -39,6 +45,7 @@ export const Contact = () => {
             },
             body: JSON.stringify(data, null, 2)
             })
+            setLoading(true)
             .then(async (response) => {
                 let result = await response.json()
                 if (result.success) {
@@ -183,7 +190,7 @@ export const Contact = () => {
                                     reCaptchaCompat={false}
                                     onVerify={onHCaptchaChange}
                                     languageOverride={"es"}
-                                    size="normal"
+                                    size={(width<"640") ? "compact" : "normal"}
                                     theme={
                                         darkMode 
                                             ? "dark"

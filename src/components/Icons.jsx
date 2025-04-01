@@ -22,8 +22,9 @@ export const ArrowUp = () => {
 }
 
 export const CloseIcon = () => {
+    const {darkMode} = useContext(ThemeContext)
     return (
-        <svg width="30px" height="30px" viewBox="0 0 24 24" strokeWidth="1.5" className="stroke-white">
+        <svg width="30px" height="30px" viewBox="0 0 24 24" strokeWidth="1.5" className={clsx(darkMode ? "stroke-white" : "stroke-red-400 hover:stroke-[#4d4d4d]")}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
         </svg>
     )
