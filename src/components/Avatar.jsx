@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { Html, useProgress } from "@react-three/drei"
 
 
+
 const CanvasLoader = () => {
     const {progress} = useProgress()
     return (
@@ -45,6 +46,7 @@ const AvatarModel = () => {
             // Obtener los huesos
             const rightShoulder = avatarRef.current.getObjectByName("RightShoulder");
             const rightArm = avatarRef.current.getObjectByName("RightArm");
+            console.log(rightArm)
             const rightForeArm = avatarRef.current.getObjectByName("RightForeArm");
             const rightHand = avatarRef.current.getObjectByName("RightHand");
             const spine = avatarRef.current.getObjectByName("Spine1");
@@ -96,6 +98,8 @@ const AvatarModel = () => {
     );
 };
 
+
+
 useGLTF.preload("https://models.readyplayer.me/67ced1861c9aaeb7e6896a8e.glb?textureQuality=medium?emotion=smile")
 
 const AvatarViewer = () => {
@@ -104,7 +108,7 @@ const AvatarViewer = () => {
             <Canvas className="w-full h-full">
                 <ambientLight intensity={5} />
                 <directionalLight position={[2, 5, 3]} intensity={2} />
-                <OrbitControls enableZoom={false} />
+                <OrbitControls enableZoom={true} />
                 
                 <Suspense fallback={<CanvasLoader />}>
                     <PerspectiveCamera makeDefault position={[0, 1, 3]}/>

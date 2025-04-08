@@ -10,7 +10,8 @@ export const Skills = () => {
         <section className="h-screen w-full relative flex flex-col justify-between" id="skills">
             <div className="flex sm:flex-row flex-col items-center sm:mt-40 mt-20 sm:mx-10 mx-5">
                 <div className="w-full align-middle items-center">
-                    <h1 className={clsx("title-section", darkMode ? `text-dark${theme}-terciary` : `text-${theme}-quaternary`)}><strong>Tecnologías</strong></h1>
+                    <h1 className={clsx("title-section", darkMode ? `text-dark${theme}-terciary` : `text-${theme}-quaternary`)}><strong>Habilidades</strong></h1>
+                    <h2 className="paragraph">A continuación se muestran las tecnologías y lenguajes de programación estudiados, mientras continuo con mi formación para seguir creciendo.</h2>
                     <div className="grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-7 gap-4 mt-3 sm:mt-5 h-fit justify-items-center">
                         {[
                             {icon: <CSS3 />, name: "CSS3"},

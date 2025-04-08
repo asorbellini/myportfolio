@@ -8,35 +8,35 @@ import HCaptcha from '@hcaptcha/react-hcaptcha';
 
 export const Contact = () => {
     const {theme, darkMode} = useContext(ThemeContext)
-    const [width, setWidth] = useState(window.innerWidth);
+    const [width, setWidth] = useState(window.innerWidth)
 
     useEffect(() => {
-        const handleResize = () => setWidth(window.innerWidth);
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
+        const handleResize = () => setWidth(window.innerWidth)
+        window.addEventListener("resize", handleResize)
+        return () => window.removeEventListener("resize", handleResize)
     }, []);
 
     const [loading, setLoading] = useState(false)
-    const [isSuccess, setIsSuccess] = useState(false);
-    const [message, setMessage] = useState({status:"", message:""});
+    const [message, setMessage] = useState({status:null, message:""})
     const [hasCopied, setHasCopied] = useState(false)
     const { register, handleSubmit, setValue, reset, 
         formState:{ errors }
      } = useForm();
     const captchaRef = useRef(null)
-    const [captchaToken, setCaptchaToken] = useState("")
+    const [captchaToken, setCaptchaToken] = useState(null)
     const onHCaptchaChange = (token) => {
         setCaptchaToken(token)
         setValue("h-captcha-response",token);
       };
 
-    const onSubmit = async (data, event) => {
-        event.preventDefault();
-
+    const onSubmit = async (data) => {
+        setLoading(true)
         if (!captchaToken) {
-            setMessage({status:400, message:"Por favor, completa el captcha."})
+            setLoading(false)
+            setMessage({status:"error", message:"Por favor, valida el captcha."})
+            return
         }
-
+        setLoading(true)
         const response = await fetch("https://api.web3forms.com/submit", {
             method: "POST",
             headers: {
@@ -45,39 +45,34 @@ export const Contact = () => {
             },
             body: JSON.stringify(data, null, 2)
             })
-            setLoading(true)
             .then(async (response) => {
                 let result = await response.json()
                 if (result.success) {
                     setLoading(false)
-                    setIsSuccess(true)
-                    console.log("message", result)
-                    setMessage({status:"200", message: "Su mensaje ha sido enviado correctamente."});
-                    event.target.reset();
+                    setMessage({status:"success", message: "Su mensaje ha sido enviado correctamente."})
                     reset()
-                    setCaptchaToken("")
+                    captchaRef.current?.resetCaptcha()
+                    setCaptchaToken(null)
                 } else {
                     setLoading(false)
-                    console.log("Error:", result);
-                    setMessage({status: "400", message:"Algo salió mal, favor de contactarse por otros medios."})
+                    setMessage({status: "error", message:"Algo salió mal, favor de contactarse por otros medios."})
                 }
             })
             .catch((error) => {
-                setIsSuccess(false);
-                console.log(error)
-                setMessage({status: "400", message:"Algo salió mal, favor de contactarse por otros medios."});
-                setCaptchaToken("")
+                setLoading(false)
+                setMessage({status: "error", message:"Algo salió mal, favor de contactarse por otros medios."})
+                setCaptchaToken(null)
             })
     }
 
     useEffect(() => {
-        if (isSuccess) {
+        if (message.status) {
             const timer = setTimeout(() => {
-                setIsSuccess(false);
+                setMessage({ status: null, message:""})
             }, 10000);
             return () => clearTimeout(timer);
-        }
-    }, [isSuccess]);
+        } 
+    }, [message.status]);
 
     const handleCopy = () => {
         navigator.clipboard.writeText('ayesorbellini@gmail.com')
@@ -94,7 +89,7 @@ export const Contact = () => {
                     <h1 className={clsx("title-section", darkMode ? `text-dark${theme}-terciary` : `text-${theme}-quaternary`)}><strong>Contactame</strong></h1>
                     <div className="w-full flex sm:flex-row flex-col items-start my-2 h-full">
                         <div className="w-full sm:basis-1/3">
-                            <h2 className="paragraph">Podes encontrarme en las siguientes redes, dejame un mensaje en el formulario o contactarme vía mail.</h2>
+                            <h2 className="paragraph">Podes encontrarme en las siguientes redes sociales, dejame un mensaje en el formulario o contactarme vía mail.</h2>
                             <div className="grid grid-cols-2 justify-items-center my-2">
                                 <a href="https://github.com/asorbellini">
                                     <GitHubIcon />
@@ -129,8 +124,8 @@ export const Contact = () => {
                                             ? `bg-[#1E1E1E] placeholder:text-[#B3B3B3] text-lg text-white shadow-dark${theme}-terciary shadow-lg border-2 border-red-500 focus:border-red-500 ring-red-100` 
                                             : `bg-[#1E1E1E] placeholder:text-[#B3B3B3] text-lg text-white shadow-dark${theme}-terciary shadow-lg border-2 border-gray-300 focus:border-indigo-600 ring-indigo-100`
                                         :  errors.name 
-                                            ? `bg-white placeholder:text-[#4D4D4D] text-lg text-black  shadow-${theme}-terciary shadow-lg border-2 border-red-600 focus:border-red-600 ring-red-100` 
-                                            : `bg-white placeholder:text-[#4D4D4D] text-lg text-black  shadow-${theme}-terciary shadow-lg border-2 border-gray-300 focus:border-indigo-600 ring-indigo-100`
+                                            ? `bg-white placeholder:text-[#4D4D4D] text-lg text-black  shadow-${theme}-quaternary shadow-lg border-2 border-red-600 focus:border-red-600 ring-red-100` 
+                                            : `bg-white placeholder:text-[#4D4D4D] text-lg text-black  shadow-${theme}-quaternary shadow-lg border-2 border-gray-300 focus:border-indigo-600 ring-indigo-100`
                                         )}
                                     placeholder="Ingresa tu nombre" />
                                     {errors.name && (
@@ -151,12 +146,12 @@ export const Contact = () => {
                                         })}
                                     className={clsx("w-full px-5 py-2 min-h-10 rounded-lg focus:outline-none", 
                                         darkMode
-                                        ? errors.name 
+                                        ? errors.email 
                                             ? `bg-[#1E1E1E] placeholder:text-[#B3B3B3] text-lg text-white shadow-dark${theme}-terciary shadow-lg border border-red-500 focus:border-red-500 ring-red-100` 
                                             : `bg-[#1E1E1E] placeholder:text-[#B3B3B3] text-lg text-white shadow-dark${theme}-terciary shadow-lg border border-gray-300 focus:border-indigo-600 ring-indigo-100`
-                                        :  errors.name 
-                                            ? `bg-white placeholder:text-[#4D4D4D] text-lg text-black  shadow-${theme}-terciary shadow-lg border border-red-600 focus:border-red-600 ring-red-100` 
-                                            : `bg-white placeholder:text-[#4D4D4D] text-lg text-black  shadow-${theme}-terciary shadow-lg border border-gray-300 focus:border-indigo-600 ring-indigo-100`
+                                        :  errors.email 
+                                            ? `bg-white placeholder:text-[#4D4D4D] text-lg text-black  shadow-${theme}-quaternary shadow-lg border border-red-600 focus:border-red-600 ring-red-100` 
+                                            : `bg-white placeholder:text-[#4D4D4D] text-lg text-black  shadow-${theme}-quaternary shadow-lg border border-gray-300 focus:border-indigo-600 ring-indigo-100`
                                         )}                                    
                                     placeholder="Ingresa tu email" />
                                     {errors.email && (
@@ -171,12 +166,12 @@ export const Contact = () => {
                                     rows={5}
                                     className={clsx("w-full px-5 py-2 min-h-10 rounded-lg focus:outline-none", 
                                         darkMode
-                                        ? errors.name 
+                                        ? errors.message 
                                             ? `bg-[#1E1E1E] placeholder:text-[#B3B3B3] text-lg text-white shadow-dark${theme}-terciary shadow-lg border border-red-500 focus:border-red-500 ring-red-100` 
                                             : `bg-[#1E1E1E] placeholder:text-[#B3B3B3] text-lg text-white shadow-dark${theme}-terciary shadow-lg border border-gray-300 focus:border-indigo-600 ring-indigo-100`
-                                        :  errors.name 
-                                            ? `bg-white placeholder:text-[#4D4D4D] text-lg text-black  shadow-${theme}-terciary shadow-lg border border-red-600 focus:border-red-600 ring-red-100` 
-                                            : `bg-white placeholder:text-[#4D4D4D] text-lg text-black  shadow-${theme}-terciary shadow-lg border border-gray-300 focus:border-indigo-600 ring-indigo-100`
+                                        :  errors.message 
+                                            ? `bg-white placeholder:text-[#4D4D4D] text-lg text-black  shadow-${theme}-quaternary shadow-lg border border-red-600 focus:border-red-600 ring-red-100` 
+                                            : `bg-white placeholder:text-[#4D4D4D] text-lg text-black  shadow-${theme}-quaternary shadow-lg border border-gray-300 focus:border-indigo-600 ring-indigo-100`
                                         )}
                                     placeholder="Escribí tu mensaje" />
                                     {errors.message && (
@@ -190,18 +185,18 @@ export const Contact = () => {
                                     reCaptchaCompat={false}
                                     onVerify={onHCaptchaChange}
                                     languageOverride={"es"}
-                                    size={(width<"640") ? "compact" : "normal"}
+                                    size={(width<640) ? "compact" : "normal"}
                                     theme={
                                         darkMode 
                                             ? "dark"
                                             : "light"}
                                     ref={captchaRef}
                                 /> 
-                                <button className={clsx("px-5 py-2 min-h-12 rounded-lg flex justify-center items-center gap-3 transition-all", darkMode ? `bg-[#4D4D4D] text-lg text-white hover:bg-[#565656]` : `bg-[#4D4D4D] text-lg text-white hover:bg-[#565656]`)} type="submit" disabled={loading}>
+                                <button className="px-5 py-2 min-h-12 rounded-lg flex justify-center items-center gap-3 transition-all bg-[#4D4D4D] text-lg text-white hover:bg-[#565656]" type="submit" disabled={loading}>
                                     {loading ? 'Enviando mensaje...' : 'Enviar'}
                                 </button> 
                             </form>
-                            {isSuccess && (<div 
+                            {message.status === "success" && (<div 
                                         className={clsx(`flex items-center p-4 mb-4 rounded-lg`, darkMode ? "bg-gray-800 text-green-400" : "bg-green-50 text-green-800")}
                                     >
                                         <div className="ms-3 text-sm font-medium">
@@ -209,19 +204,19 @@ export const Contact = () => {
                                         </div>
                                         <button 
                                             type="button"
-                                            onClick={() => setIsSuccess(false)} 
+                                            onClick={() => setMessage({ status: null, message: "" })} 
                                             className={clsx("ms-auto p-1.5 rounded-lg hover:bg-gray-200", darkMode ? "hover:bg-gray-800 " : "")}
                                         ><CloseIcon /></button>
                                     </div>
                                 )}
-                            {message.status === 400 && (<div 
+                            {message.status === "error" && (<div 
                                         className={clsx("flex items-center p-4 mb-4 rounded-lg", darkMode ? "bg-gray-800 text-red-400" : "bg-red-50 text-red-800")} >
                                         <div className="ms-3 text-sm font-medium">
                                             {message.message}
                                         </div>
                                         <button 
                                             type="button"
-                                            onClick={() => setIsSuccess(false)} 
+                                            onClick={() => setMessage({ status: null, message: "" })} 
                                             className={clsx("ms-auto p-1.5 rounded-lg hover:bg-gray-200", darkMode ? "hover:bg-gray-800 " : "")}
                                         ><CloseIcon /></button>
                                     </div>

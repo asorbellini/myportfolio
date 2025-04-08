@@ -63,7 +63,7 @@
   }
 
   .title-section {
-    @apply text-start xl:text-5xl md:text-4xl sm:text-3xl text-2xl font-generalsans
+    @apply text-start xl:text-5xl md:text-4xl sm:text-3xl text-2xl font-generalsans underline underline-offset-8
   }
   
   .paragraph {

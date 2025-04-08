@@ -38,26 +38,26 @@ export default {
         //DARK THEME
         darkautumn:{
           'primary': 'rgb(28, 28, 28)', //BACKGROUND
-          'secondary': 'rgb(108, 103, 19)', //TEXT / BACKGROUND-NAVBAR 
+          'secondary': 'rgb(160, 154, 44)', //TEXT / BACKGROUND-NAVBAR 
           'terciary': 'rgb(255, 254, 138)', //LOGO 
           'quaternary': 'rgb(97, 24, 0)', //BORDER 
         },
         darkwinter:{
           'primary': 'rgb(28, 28, 28)',
-          'secondary': 'rgb(43, 110, 181)',
-          'terciary':'rgb(150, 120, 200)',
+          'secondary': 'rgb(90, 146, 207)',
+          'terciary':'rgb(120, 139, 202)',
           'quaternary':'rgb(20, 2, 79)',
         },
         darkspring:{
           'primary': 'rgb(28, 28, 28)',
-          'secondary': 'rgb(111, 21, 161)',
-          'terciary':'rgb(111, 21, 161)',
-          'quaternary':'rgb(123, 86, 240)',
+          'secondary': 'rgb(167, 102, 217)',
+          'terciary':'rgb(213, 111, 189)',
+          'quaternary':'rgb(36, 22, 40)',
         },
         darksummer:{
           'primary': 'rgb(28, 28, 28)',
-          'secondary': 'rgb(8, 110, 28)',
-          'terciary':'rgb(180, 140, 255)',
+          'secondary': 'rgb(27, 162, 55)',
+          'terciary':'rgb(194, 112, 199)',
           'quaternary':'rgb(244,139,41)',
         }
       }

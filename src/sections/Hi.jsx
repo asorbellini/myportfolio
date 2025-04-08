@@ -11,12 +11,11 @@ export const Hi = () => {
         <section className="h-screen w-full relative flex flex-col justify-between" id="home">
             <div className="flex sm:flex-row flex-col items-center sm:mt-40 mt-28 sm:mx-10 mx-5">
                 <div className="w-full sm:basis-2/3">
-                    <h1 className={clsx("home-section", darkMode ? `text-dark${theme}-secondary` : `text-${theme}-secondary`)}><strong>Hola! Soy Ayelén.</strong></h1>
+                    <h1 className={clsx("home-section", darkMode ? `text-dark${theme}-secondary drop-shadow-sm drop-shadow-dark${theme}-quaternary` : `text-${theme}-secondary drop-shadow-sm drop-shadow-${theme}-quaternary`)}><strong>Hola! Soy Ayelén.</strong></h1>
                     <h3 className="my-4 text-start xl:text-2xl md:text-xl sm:text-lg text-base/6">Bienvenido a mi espacio digital, donde cada línea de código representa un nuevo aprendizaje en mi camino.</h3>
                 </div>
                 <div className="w-full sm:basis-1/3 flex justify-center">
                         <AvatarViewer/>
-                    {/*<img src={imagenPrevia} className="w-64"/> */}
                 </div>
             </div>
             <div className="relative w-full">
