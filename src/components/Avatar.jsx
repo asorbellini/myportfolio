@@ -1,4 +1,4 @@
-import { useRef} from "react";
+import { useRef, useState, useEffect} from "react";
 import { Canvas, render, useFrame } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { Suspense } from "react";
@@ -35,14 +35,21 @@ const AvatarModel = () => {
     const { scene } = useGLTF("https://models.readyplayer.me/67ced1861c9aaeb7e6896a8e.glb?textureQuality=medium?emotion=smile", true, 
         (loader) => {loader.manager.onLoad = () => console.log("Modelo cargado con éxito")});
     const avatarRef = useRef();
-
+    const [hover, setHover] = useState(false)
+    const startTimeRef = useRef(0)
+    const handleHover = () => {
+        startTimeRef.current = performance.now()/1000
+        setHover(true)
+    }
     useFrame(({ clock }) => {
         if (avatarRef.current) {
             const time = clock.getElapsedTime();
-            if (time >= 10){
-                return
+            const enlapsedTime = time - startTimeRef.current;
+            if (enlapsedTime >= 10){
+                setHover(false)
+                return;
             }
-            const waveFactor = Math.sin(time * 4) * 0.8; // Oscilación del saludo
+            const waveFactor = Math.sin(enlapsedTime * 4) * 0.8; // Oscilación del saludo
             // Obtener los huesos
             const rightShoulder = avatarRef.current.getObjectByName("RightShoulder");
             const leftShoulder = avatarRef.current.getObjectByName("LeftShoulder");
@@ -62,14 +69,21 @@ const AvatarModel = () => {
             leftShoulder.rotation.y = -Math.PI/8
         }
     });
+    useEffect(() => {
+        startTimeRef.current = performance.now() / 1000;
+        setHover(true)
+      }, [])
 
     return (
-        <primitive 
-            ref={avatarRef}
-            object={scene}
-            scale={1.5} 
-            position={[0, -1.5, 0]}
-            rotation={[0, 0, 0]} />
+        <group
+            onPointerOver={handleHover}>
+            <primitive 
+                ref={avatarRef}
+                object={scene}
+                scale={1.5} 
+                position={[0, -1.5, 0]}
+                rotation={[0, 0, 0]} />
+        </group>
     );
 };
 
@@ -87,7 +101,7 @@ const AvatarViewer = () => {
                 
                 <Suspense fallback={<CanvasLoader />} >
                     <PerspectiveCamera makeDefault position={[0, 1.2, 3]}/>
-                    <AvatarModel />
+                    <AvatarModel/>
                 </Suspense>
             </Canvas>
         </div>
