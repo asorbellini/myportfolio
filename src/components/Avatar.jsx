@@ -1,9 +1,8 @@
 import { useRef} from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, render, useFrame } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera, useGLTF } from "@react-three/drei";
 import { Suspense } from "react";
 import { Html, useProgress } from "@react-three/drei"
-
 
 
 const CanvasLoader = () => {
@@ -40,51 +39,27 @@ const AvatarModel = () => {
     useFrame(({ clock }) => {
         if (avatarRef.current) {
             const time = clock.getElapsedTime();
+            if (time >= 10){
+                return
+            }
             const waveFactor = Math.sin(time * 4) * 0.8; // Oscilación del saludo
-            const raiseFactor = (Math.sin(time * 2 - Math.PI/2)+1)/2; // Movimiento arriba-abajo
-    
             // Obtener los huesos
             const rightShoulder = avatarRef.current.getObjectByName("RightShoulder");
-            const rightArm = avatarRef.current.getObjectByName("RightArm");
-            console.log(rightArm)
+            const leftShoulder = avatarRef.current.getObjectByName("LeftShoulder");
             const rightForeArm = avatarRef.current.getObjectByName("RightForeArm");
             const rightHand = avatarRef.current.getObjectByName("RightHand");
             const spine = avatarRef.current.getObjectByName("Spine1");
-    
-            // Ahora movemos el RightArm con respecto al RightShoulder
-            if (rightArm) {
-                rightArm.rotation.set(0, Math.PI/3, 0); // Posición base para el brazo
-            }
-    
-            // Mover el RightForeArm en relación con el RightArm
-            if (rightForeArm) {
-                const forearmRotation = Math.PI/2  + waveFactor * 0.5; // Flexión dinámica del codo
-                rightForeArm.rotation.set(forearmRotation, Math.PI/2, waveFactor);
-            }
-    
-            // Mover la mano para que esté alineada hacia adelante
-            if (rightHand) {
-                const handRotation = waveFactor * 5 ; // Flexión dinámica del codo
-                rightForeArm.rotation.set(0,  Math.PI/3, handRotation);
-            }
-    
-            // Ahora animamos el brazo de abajo hacia arriba
-            if (rightArm && rightShoulder) {
-                const armRaiseAngle = Math.PI/6 * raiseFactor; // Ángulo de levantamiento
-                const forearmRotation = Math.PI/3  ;
-                // Mover el brazo hacia arriba desde el codo
-                rightShoulder.rotation.y = -Math.PI/16
-                rightArm.rotation.x = armRaiseAngle;
-                rightArm.rotation.z = waveFactor * 0.3;
-                rightForeArm.rotation.z = Math.PI/12 * raiseFactor - forearmRotation;
-                rightHand.rotation.y =  forearmRotation/2 - Math.PI/2 * raiseFactor;
-                rightHand.rotation.x = waveFactor*0.5;
-            }
-    
-            // Ligero balanceo del torso para hacer más natural el saludo
+            // rotaciones y movimientos 
+            rightShoulder.rotation.y = -Math.PI/16
+            rightShoulder.rotation.x = -Math.PI/8
+            const forearmRotation = -Math.PI/2  - waveFactor * 0.5;  // Flexión dinámica del codo
+            rightForeArm.rotation.set(0, -Math.PI/16, forearmRotation);
+            rightHand.rotation.x = waveFactor*0.2;    
+            // Balanceo del torso para hacer más natural el saludo
             if (spine) {
                 spine.rotation.z = waveFactor * 0.05; // Balanceo del torso
-            }
+            } 
+            leftShoulder.rotation.y = -Math.PI/8
         }
     });
 
@@ -108,10 +83,10 @@ const AvatarViewer = () => {
             <Canvas className="w-full h-full">
                 <ambientLight intensity={5} />
                 <directionalLight position={[2, 5, 3]} intensity={2} />
-                <OrbitControls enableZoom={true} />
+                <OrbitControls enableZoom={false} />
                 
-                <Suspense fallback={<CanvasLoader />}>
-                    <PerspectiveCamera makeDefault position={[0, 1, 3]}/>
+                <Suspense fallback={<CanvasLoader />} >
+                    <PerspectiveCamera makeDefault position={[0, 1.2, 3]}/>
                     <AvatarModel />
                 </Suspense>
             </Canvas>
