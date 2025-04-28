@@ -83,8 +83,8 @@ export const Contact = () => {
     }
 
     return (
-        <section className=" w-full relative flex flex-col justify-between sm:mb-30" id="contact">
-            <div className="flex sm:flex-row flex-col items-center sm:mt-40 my-16 sm:mx-10 mx-5">
+        <section className="min-h-screen w-full relative flex flex-col justify-between sm:mb-30" id="contact">
+            <div className="flex sm:flex-row flex-col items-center sm:mt-28 my-16 sm:mx-10 mx-5">
                 <div className="w-full">
                     <h1 className={clsx("title-section", darkMode ? `text-dark${theme}-terciary` : `text-${theme}-quaternary`)}><strong>Contactame</strong></h1>
                     <div className="w-full flex sm:flex-row flex-col items-start my-2 h-full">
@@ -192,7 +192,7 @@ export const Contact = () => {
                                             : "light"}
                                     ref={captchaRef}
                                 /> 
-                                <button className="px-5 py-2 min-h-12 rounded-lg flex justify-center items-center gap-3 transition-all bg-[#4D4D4D] text-lg text-white hover:bg-[#565656]" type="submit" disabled={loading}>
+                                <button className="px-5 py-2 min-h-12 rounded-lg flex justify-center items-center gap-3 transition-all bg-[#4D4D4D] text-lg text-white hover:bg-opacity-50" type="submit" disabled={loading}>
                                     {loading ? 'Enviando mensaje...' : 'Enviar'}
                                 </button> 
                             </form>
@@ -205,7 +205,7 @@ export const Contact = () => {
                                         <button 
                                             type="button"
                                             onClick={() => setMessage({ status: null, message: "" })} 
-                                            className={clsx("ms-auto p-1.5 rounded-lg hover:bg-gray-200", darkMode ? "hover:bg-gray-800 " : "")}
+                                            className={clsx("ms-auto p-1.5 rounded-lg hover:bg-opacity-50", darkMode ? "hover:bg-opacity-50 " : "")}
                                         ><CloseIcon /></button>
                                     </div>
                                 )}
@@ -217,7 +217,7 @@ export const Contact = () => {
                                         <button 
                                             type="button"
                                             onClick={() => setMessage({ status: null, message: "" })} 
-                                            className={clsx("ms-auto p-1.5 rounded-lg hover:bg-gray-200", darkMode ? "hover:bg-gray-800 " : "")}
+                                            className={clsx("ms-auto p-1.5 rounded-lg hover:bg-opacity-50", darkMode ? "hover:bg-opacity-50 " : "")}
                                         ><CloseIcon /></button>
                                     </div>
                                 )}

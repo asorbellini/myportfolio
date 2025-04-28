@@ -7,11 +7,11 @@ import { HTML5, CSS3, PYTHON, JS, DJANGO, REACT, SQLite3 } from "../components/T
 export const Skills = () => {
     const {theme, darkMode} = useContext(ThemeContext)
     return (
-        <section className="h-screen w-full relative flex flex-col justify-between" id="skills">
-            <div className="flex sm:flex-row flex-col items-center sm:mt-40 mt-20 sm:mx-10 mx-5">
+        <section className="min-h-screen w-full relative flex flex-col justify-between" id="skills">
+            <div className="flex sm:flex-row flex-col items-center sm:mt-28 mt-20 sm:mx-10 mx-5">
                 <div className="w-full align-middle items-center">
                     <h1 className={clsx("title-section", darkMode ? `text-dark${theme}-terciary` : `text-${theme}-quaternary`)}><strong>Habilidades</strong></h1>
-                    <h2 className="paragraph">A continuación se muestran las tecnologías y lenguajes de programación trabajados, mientras continuo con mi formación para seguir creciendo.</h2>
+                    <h2 className="paragraph">A continuación se muestran las tecnologías y lenguajes de programación abordados como autodidacta, mientras continuo formandome para seguir creciendo.</h2>
                     <div className="grid grid-cols-3 sm:grid-cols-4 xl:grid-cols-7 gap-4 mt-3 sm:mt-5 h-fit justify-items-center">
                         {[
                             {icon: <CSS3 
@@ -81,7 +81,7 @@ export const Skills = () => {
                                 name: "SQLite3"},
                         ].map((tech, index) => (
                             <div key={index} className={clsx("w-full aspect-square flex flex-col items-center justify-center p-4 rounded-xl group", darkMode ? `border-2 border-dark${theme}-terciary shadow-md shadow-dark${theme}-terciary` : `border-2 border-${theme}-quaternary shadow-md shadow-${theme}-quaternary` )}>
-                                <div className="w-20 h-20 flex items-center justify-center transition-transform group-hover:scale-150">
+                                <div className="w-12 sm:w-20 h-12 sm:h-20 flex items-center justify-center transition-transform group-hover:scale-150">
                                     {tech.icon}
                                 </div>
                                 <p className="mt-2 text-sm sm:text-base group-hover:hidden transition-all duration-300"><strong>{tech.name}</strong></p>
@@ -92,7 +92,7 @@ export const Skills = () => {
             </div>
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-12 flex items-center justify-center animate-bounce">
                 <a href="#projects" onClick={()=>{}}>
-                    <ArrowDown className="w-6 h-6"/>
+                    <ArrowDown className="w-8 h-8"/>
                 </a>
             </div>
         </section>

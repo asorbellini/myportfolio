@@ -21,7 +21,7 @@ export const Hi = () => {
             <div className="relative w-full">
                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center justify-center animate-bounce">
                     <a href="#about" onClick={()=>{}}>
-                        <ArrowDown className="w-6 h-6"/>
+                        <ArrowDown className="w-8 h-8"/>
                     </a>
                 </div>
             </div>

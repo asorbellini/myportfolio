@@ -6,28 +6,38 @@
 
 * {
   scroll-behavior: smooth;
-  transition: background-color 1s ease-in ;
+  transition: 
+    background-color 2s ease-in-out,
+    color 1s ease-in-out;
   font-family: font-generalsans;
 }
 /*LIGHTMODE*/
 .autumn {
   background-color: theme('colors.autumn.primary');
   color: '#000000';
+  --scroll-track: #f5f5f5;
+  --scroll-thumb: theme('colors.autumn.quaternary')
 }
 
 .winter {
   background-color: theme('colors.winter.primary');
   color: '#000000';
+  --scroll-track: #f5f5f5;
+  --scroll-thumb: theme('colors.winter.quaternary')
 }
 
 .spring {
   background-color: theme('colors.spring.primary');
   color: '#000000';
+  --scroll-track: #f5f5f5;
+  --scroll-thumb: theme('colors.spring.quaternary')
 }
 
 .summer {
   background-color: theme('colors.summer.primary');
   color: '#000000';
+  --scroll-track: #f5f5f5;
+  --scroll-thumb: theme('colors.summer.quaternary')
 }
 
 
@@ -35,21 +45,40 @@
 .autumn.dark {
   background-color: theme('colors.darkautumn.primary');
   color: rgb(255, 255,255);
+  --scroll-track: #4c4c4c;
+  --scroll-thumb: theme('colors.darkautumn.terciary')
 }
 
 .winter.dark {
   background-color: theme('colors.darkwinter.primary');
   color: rgb(255, 255,255);
+  --scroll-track: #4c4c4c;
+  --scroll-thumb: theme('colors.darkwinter.terciary')
 }
 
 .spring.dark {
   background-color: theme('colors.darkspring.primary');
   color: rgb(255, 255,255);
+  --scroll-track:#4c4c4c;
+  --scroll-thumb: theme('colors.darkspring.terciary')
 }
 
 .summer.dark {
   background-color: theme('colors.darksummer.primary');
   color: rgb(255, 255,255);
+  --scroll-track: #4c4c4c;
+  --scroll-thumb: theme('colors.darksummer.terciary');
+}
+
+::-webkit-scrollbar{
+  width: 8px;
+}
+::-webkit-scrollbar-track{
+  background-color: var(--scroll-track);
+} 
+::-webkit-scrollbar-thumb{
+  border-radius: 5px;
+  background-color: var(--scroll-thumb);
 }
 
 

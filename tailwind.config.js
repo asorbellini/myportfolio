@@ -58,7 +58,7 @@ export default {
           'primary': 'rgb(28, 28, 28)',
           'secondary': 'rgb(27, 162, 55)',
           'terciary':'rgb(194, 112, 199)',
-          'quaternary':'rgb(244,139,41)',
+          'quaternary':'rgb(199, 83, 2)',
         }
       }
     },
