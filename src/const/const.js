@@ -215,8 +215,8 @@ export const Proyectos = [
         title: "UMA",
         smallDescription:"El presente proyecto se encuentra en etapa de desarrollo, el mismo consiste en diseñar y desarrollar una web para vender cursos online de prácticas de Yoga, Meditación y bienestar general.",
         description: "El presente proyecto se encuentra en etapa de desarrollo, el mismo consiste en diseñar y desarrollar una web para vender cursos online de prácticas de Yoga, Meditación y bienestar general.",
-        technologies:["TailwindCSS", "React",],
-        repository:"https://github.com/asorbellini",
+        technologies:["React"],
+        repository:"",
         urlImages:[{
             id:1,
             name: "Proximamente",

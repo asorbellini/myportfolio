@@ -49,7 +49,7 @@ const Carousel = ({listOfImages}) => {
             </div>
             <button
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-green-600 bg-opacity-50 rounded-full p-2 hover:bg-opacity-80 transition duration-300"
+                className={clsx(listOfImages.length >1 ? "absolute left-4 top-1/2 transform -translate-y-1/2 bg-green-600 bg-opacity-50 rounded-full p-2 hover:bg-opacity-80 transition duration-300" : "hidden")}
                 >
                     <div style={{ transform: 'rotate(90deg)', transformOrigin: 'center' }}>
                         <ArrowDown className="w-3 sm:w-6 h-6 sm:h-6"/>
@@ -57,7 +57,7 @@ const Carousel = ({listOfImages}) => {
             </button>
             <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-green-600 bg-opacity-50 rounded-full p-2 hover:bg-opacity-80 transition duration-300"
+            className={clsx(listOfImages.length >1 ? "absolute right-4 top-1/2 transform -translate-y-1/2 bg-green-600 bg-opacity-50 rounded-full p-2 hover:bg-opacity-80 transition duration-300" : "hidden")}
             >
                 <div style={{ transform: 'rotate(270deg)', transformOrigin: 'center' }}>
                         <ArrowDown className="w-3 sm:w-6 h-6 sm:h-6"/>
@@ -117,7 +117,7 @@ export const Projects = () => {
                             <div className="overflow-y-auto text-start my-2 sm:px-10 px-5">
                                 <p className="text-base">{activeModal?.description}</p>
                                 <p className=" text-base">Teconologías implementadas: {activeModal?.technologies.join(", ")}</p>
-                                <p className="inline-flex text-base"> Repositorio del proyecto</p><a className="inline-flex m-1 gap-1 hover:scale-125" href={activeModal?.repository} target="_blank" rel="noopener noreferrer"><GitHubIcon  /></a>
+                                <p className={clsx(activeModal?.repository.length == 0 ? "hidden" : "inline-flex text-base")}>Repositorio del proyecto<a className="inline-flex m-1 gap-1 hover:scale-125" href={activeModal?.repository} target="_blank" rel="noopener noreferrer"><GitHubIcon  /></a></p>
                             </div>
                         </Modal>
                     </div>
